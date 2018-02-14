@@ -9,7 +9,7 @@
         <button class="quiz-choice" data-option="2">Sometimes</button>
         <p class="result"></p>
         <p class="explanation">
-            I’m not always at the fair, you see.
+            Im not always at the fair, you see.
         </p>
     </div>
 
@@ -22,7 +22,7 @@
         <button class="quiz-choice" data-option="2">Sometimes</button>
         <p class="result"></p>
         <p class="explanation">
-            Assuming I’m already there, I can’t miss him.
+            Assuming Im already there, I can not miss him.
         </p>
     </div>
 
@@ -35,7 +35,7 @@
         <button class="quiz-choice" data-option="2">Sometimes</button>
         <p class="result"></p>
         <p class="explanation">
-            They’re not that great.
+            They are not that great.
         </p>
     </div>
     
@@ -74,7 +74,7 @@
         <button class="quiz-choice" data-option="2">Sometimes</button>
         <p class="result"></p>
         <p class="explanation">
-            I’ll only play when I feel like doing so.
+            I will only play when I feel like doing so.
         </p>
     </div>
 
@@ -172,14 +172,20 @@ em {
     }
     const correct_responses = [
         '&#x2714; Correct!',
-        '&#x2714; That’s right!',
+        '&#x2714; That is right!',
         '&#x2714; Good job!'
     ]
     const incorrect_responses = [
-        '&#x2718; Try again!',
-        '&#x2718; Oops! Wrong answer'
+        '&#x2718; jyfyfy!',
+        '&#x2718; WRUDFE'
     ]
-
+  const q1_responses = [
+        '&#x2718; Q1 is wrong!',
+        '&#x2718; Q1 is definately wrong'
+    ]
+const q2_responses = [
+        '&#x2718; Q2 is wrong!'
+    ]
     const random_item = function(arr) {
         return arr[ parseInt( arr.length * Math.random() ) ]
     }
@@ -197,7 +203,14 @@ em {
             return [1, random_item(correct_responses)]
         }
         else {
+			if (qid == 'q1'){
+				return [0, random_item(q1_responses)]
+			} else if (qid == 'q2'){
+				return [0, random_item(q2_responses)]
+			} else {
+							
             return [0, random_item(incorrect_responses)]
+			}
         }
     }
 
