@@ -1,0 +1,239 @@
+<div class="quiz-wrapper">
+    
+    <div class="quiz-question" id="q1">
+        <p class="question">
+           Which month is june
+        </p>
+        <button class="quiz-choice" data-option="1"> Septiembre </button>
+        <button class="quiz-choice" data-option="0"> Noviembre </button>
+        <button class="quiz-choice" data-option="2"> Junio </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+
+    <div class="quiz-question" id="q2">
+        <p class="question">
+            Which month is July in Spanish
+        </p>
+        <button class="quiz-choice" data-option="1"> enero </button>
+        <button class="quiz-choice" data-option="0"> julio </button>
+        <button class="quiz-choice" data-option="2"> abril </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+
+    <div class="quiz-question" id="q3">
+        <p class="question">
+             The time is 3:20
+        </p>
+        <button class="quiz-choice" data-option="1"> Son las tres y veinte </button>
+        <button class="quiz-choice" data-option="0"> Son las dos y treinta </button>
+        <button class="quiz-choice" data-option="2"> Son las ocho y veinte </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+    
+    <div class="quiz-question" id="q4">
+        <p class="question">
+            It is 5:40 in spanish
+        </p>
+        <button class="quiz-choice" data-option="1"> Son las dos y cinco </button>
+        <button class="quiz-choice" data-option="0"> Son las cinco y cuarenta </button>
+        <button class="quiz-choice" data-option="2"> Son las seis y cincuenta </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+    
+    <div class="quiz-question" id="q5">
+        <p class="question">
+           How to say hablar in yo perspective
+        </p>
+        <button class="quiz-choice" data-option="1"> Hablo </button>
+        <button class="quiz-choice" data-option="0"> Hablar </button>
+        <button class="quiz-choice" data-option="2"> Hablas </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+    
+    <div class="quiz-question" id="q6">
+        <p class="question">
+        How to say my dogs are grey
+        </p>
+        <button class="quiz-choice" data-option="1"> Mis gatos son grises </button>
+        <button class="quiz-choice" data-option="0"> Mis perros son grises </button>
+        <button class="quiz-choice" data-option="2"> Mi perro es gris </button>
+        <p class="result"></p>
+        <p class="explanation">
+            
+        </p>
+    </div>
+
+</div>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    line-height: 1.4;
+    color: #ce5151;
+    
+    background: #e84e6a; /* Old browsers */
+    background: -moz-linear-gradient(top, #e84e6a 0%, #ffd089 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #e84e6a 0%,#ffd089 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #e84e6a 0%,#ffd089 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e84e6a', endColorstr='#ffd089',GradientType=0 ); /* IE6-9 */
+}
+p {
+    margin-bottom: 0.625em;
+}
+em {
+    font-style: italic;
+}
+.quiz-wrapper {
+    padding: 0 1em;
+}
+.quiz-question {
+    padding: 1.5em;
+    margin: 1.5em auto;
+    max-width: 24em;
+    text-align: center;
+    background-color: white;
+    border-radius: 1.5em;
+    
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+.question {
+    font-size: 1.2em;
+}
+.quiz-choice {
+    font-family: inherit;
+    line-height: inherit;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0 0.2em;
+    padding: 0.5em 0.875em;
+    text-transform: uppercase;
+    color: #aa2b09;
+    background-color: transparent;
+    border: 1px solid #ffd089;
+    border-radius: 0.5em;
+    cursor: pointer;
+    
+    &:hover, &:focus, &:active {
+        background-color: #ffd089;
+    }
+    &:active {
+        box-shadow: inset 0 0.125em 0.25em rgba(0,0,0,0.4);
+    }
+    
+    &.correct {
+        text-color: green;
+        border-color: #68aa00;
+        background-color: #68aa00;
+    }
+}
+.result {
+    display: none;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-top: 1em;
+}
+.explanation {
+    display: none;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+(function() {
+    "use strict"
+    
+    const quiz_answers = {
+        q1: 0,
+        q2: 2,
+        q3: 1,
+        q4: 1,
+        q5: 0,
+        q6: 2
+    }
+    const correct_responses = [
+        '&#x2714; Correct!'
+    ]
+    const incorrect_responses = [
+        '&#x2718; Good Job!',
+        '&#x2718; Correct!'
+    ]
+  const q1_responses = [
+        '&#x2718; Q1 is wrong!',
+        '&#x2718; Q1 is incorrect'
+    ]
+const q2_responses = [
+        '&#x2718; Q2 is wrong!'
+    ]
+    const random_item = function(arr) {
+        return arr[ parseInt( arr.length * Math.random() ) ]
+    }
+
+    const check_answer = function(choice, qid, obj) {
+        const get_answer = function(id, obj) {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    if (key === id) { return obj[key] }
+                }
+            }
+        }
+
+        if ( get_answer(qid, obj) === parseInt(choice) ) {
+            return [1, random_item(correct_responses)]
+        }
+        else {
+			if (qid == 'q1'){
+				return [0, random_item(q1_responses)]
+			} else if (qid == 'q2'){
+				return [0, random_item(q2_responses)]
+			} else {
+							
+            return [0, random_item(incorrect_responses)]
+			}
+        }
+    }
+
+    $('.quiz-choice').on('click', function(e) {
+        e.preventDefault()
+
+        var targ = $(e.target)
+        var qid = targ.parent('.quiz-question').attr('id')
+        var choice = targ.attr('data-option')
+        var result = targ.siblings('.result')
+        var expl = targ.siblings('.explanation')
+        var answer = check_answer(choice, qid, quiz_answers)
+
+        targ.siblings('.quiz-choice').removeClass('correct')
+        result.hide().empty().append( answer[1] ).fadeIn('fast')
+        if ( answer[0] === 1 ) {
+            targ.addClass('correct')
+            expl.fadeIn('fast')
+        }
+    })
+    
+})()
+
+</script>
+
+<center>
+<a href= "geometry.html">GEOMETRY</a>
+</center>
